@@ -1,0 +1,10 @@
+server:
+  port: ${PORT}
+  servlet:
+    contextPath: /
+
+spring:
+  application:
+    name: Weather Station
+
+outputFileFolder: ${OUTPUT}
