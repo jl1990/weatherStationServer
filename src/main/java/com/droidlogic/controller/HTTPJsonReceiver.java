@@ -24,13 +24,15 @@ public class HTTPJsonReceiver {
     private static final String FORMAT=".txt";
 
     @RequestMapping(method = RequestMethod.POST)
-    public void receiveJsonAsFile(@RequestBody String json){
+    public ResponseEntity receiveJsonAsFile(@RequestBody String json){
         File file = new File(outputFileFolder+File.separator+FILE_NAME+System.currentTimeMillis()+FORMAT);
         try(BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))){
             bufferedWriter.write(json);
+            return ResponseEntity.ok().build();
         }catch (Exception e){
             log.error(e.getMessage());
         }
+        return ResponseEntity.status(500).build();
     }
 
     @RequestMapping(method = RequestMethod.GET, path="")
